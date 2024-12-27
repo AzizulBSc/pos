@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Middleware\Authentication;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsStudent;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'isAdmin' => IsAdmin::class,
+            'isStudent' => IsStudent::class,
+            'auth' => Authentication::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

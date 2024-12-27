@@ -1,66 +1,195 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ecommerce Management System - Project Setup Guide
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+Welcome to the setup guide for the **Ecommerce Management System**. This document provides comprehensive steps to install, configure, and run the project in your local environment, using both Docker and a native setup. Follow these instructions to ensure proper configuration.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prerequisites
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Please ensure you have the following installed on your system:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **PHP** (version 8.3 or higher)
+- **Composer**
+- **npm**
+- **MySQL** (version 8.0 or compatible, e.g., MariaDB)
+- **Git**
 
-## Learning Laravel
+## Server Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+This application requires a server with the following specifications:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **PHP** (version 8.3 or higher) with the extensions:
+  - BCMath
+  - Ctype
+  - Fileinfo
+  - JSON
+  - Mbstring
+  - PDO
+  - GD
+  - Zip
+  - PDO MySQL
+- **MySQL** (version 8.0) or **MariaDB**
+- **Composer**
+- **Web Server**: Apache or Nginx
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Setup Options
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+This guide covers two setup methods:
+1. **Using Docker**
+2. **Setting Up Locally (Without Docker)**
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Setup with Docker
 
-## Contributing
+#### 1. Clone the Repository
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/azizulbsc/ecommerce-management.git
+cd ecommerce-management
+```
 
-## Code of Conduct
+#### 2. Initialize the Project
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+sudo make setup
+```
 
-## Security Vulnerabilities
+#### Additional Docker Commands
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Install Dependencies**
 
-## License
+    ```bash
+    sudo make composer-install
+    sudo make composer-update
+    sudo make npm-install-build
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Set File Permissions**
+
+    ```bash
+    sudo make set-permissions
+    ```
+
+- **Generate Application Key**
+
+    ```bash
+    sudo make generate-key
+    ```
+
+- **Run Migrations and Seed the Database**
+
+    ```bash
+    sudo make migrate-fresh-seed
+    ```
+
+- **Setup Environment File**
+
+    ```bash
+    sudo make setup-env
+    ```
+
+The application should now be accessible at [http://localhost](http://localhost).
+
+---
+
+### Setup Without Docker
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/azizulbsc/ecommerce-management.git
+cd ecommerce-management
+```
+
+#### 2. Install PHP and npm Dependencies
+
+Within the project directory, run:
+
+```bash
+composer install
+npm install
+npm run build
+```
+
+#### 3. Configure the Environment
+
+Create the `.env` file by copying the sample configuration:
+
+```bash
+cp .env.example .env
+```
+
+#### 4. Generate Application Key
+
+Secure the application by generating a key:
+
+```bash
+php artisan key:generate
+```
+
+#### 5. Configure Database
+
+1. **Access MySQL**:
+
+    ```bash
+    mysql -u {username} -p
+    ```
+
+2. **Create Database**:
+
+    ```sql
+    CREATE DATABASE coaching_management;
+    ```
+
+3. **Grant User Permissions**:
+
+    ```sql
+    GRANT ALL ON coaching_management.* TO '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
+    ```
+
+4. **Apply Changes and Exit**:
+
+    ```sql
+    FLUSH PRIVILEGES;
+    EXIT;
+    ```
+
+5. **Update `.env` Database Settings**:
+
+    ```plaintext
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=coaching_management
+    DB_USERNAME={your_username}
+    DB_PASSWORD={your_password}
+    ```
+
+#### 6. Run Migrations and Seed Data
+
+To set up the database tables and populate them with initial data, run:
+
+```bash
+php artisan migrate --seed
+```
+
+#### 7. Start the Development Server
+
+To run the application locally, execute:
+
+```bash
+php artisan serve
+```
+
+Your application will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+---
+
+## Additional Information
+
+- **Seeding**: The database seeder is configured to populate initial data. Run `php artisan migrate --seed` to use it.
+- **Environment Variables**: Ensure all necessary environment variables are set in the `.env` file.
+- **Database Configuration**: The application is configured for MySQL by default. Update the `.env` file as needed for other database connections.
