@@ -100,8 +100,8 @@ The application should now be accessible at [http://localhost](http://localhost)
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/azizulbsc/pos-management.git
-cd pos-management
+git clone https://github.com/AzizulBSc/pos.git
+cd pos
 ```
 
 #### 2. Install PHP and npm Dependencies
@@ -141,13 +141,13 @@ php artisan key:generate
 2. **Create Database**:
 
     ```sql
-    CREATE DATABASE pos_management;
+    CREATE DATABASE pos;
     ```
 
 3. **Grant User Permissions**:
 
     ```sql
-    GRANT ALL ON pos_management.* TO '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
+    GRANT ALL ON pos.* TO '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
     ```
 
 4. **Apply Changes and Exit**:
@@ -163,7 +163,7 @@ php artisan key:generate
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
-    DB_DATABASE=pos_management
+    DB_DATABASE=pos
     DB_USERNAME={your_username}
     DB_PASSWORD={your_password}
     ```
