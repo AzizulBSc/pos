@@ -13,7 +13,6 @@
                     <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="user_type" value="{{ $user->user_type }}">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -194,9 +193,9 @@
     <script>
         $(document).ready(function() {
             // Attach event listener to radio buttons
-            $('#user_type_yes, #user_type_no').on('change', function() {
+            $('#is_admin_yes, #is_admin_no').on('change', function() {
                 // Toggle visibility of #teacher_info based on the selected radio button
-                if ($('#user_type_yes').is(':checked')) {
+                if ($('#is_admin_yes').is(':checked')) {
                     $('#teacher_info').removeClass('d-none');
                 } else {
                     $('#teacher_info').addClass('d-none');
@@ -204,12 +203,7 @@
             });
 
             // Trigger the change event on page load to set the initial state
-            $('#user_type_yes, #user_type_no').trigger('change');
-
-            // Check the radio button based on the user_type
-            @if ($user->user_type == 'teacher')
-                $('#teacher_info').removeClass('d-none');
-            @endif
+            $('#is_admin_yes, #is_admin_no').trigger('change');
         });
     </script>
 @endpush

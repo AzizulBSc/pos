@@ -1,9 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\Student;
-use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,9 +16,8 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'phone' => '1234567890',
-            'email' => 'admin@localhost',
-            'password' => bcrypt('password'),
-            'user_type' => 'admin'
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('12345678'),
         ]);
     }
 }

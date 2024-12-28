@@ -44,7 +44,7 @@
             responsive: true,
             serverSide: true,
             processing: true,
-            ajax: "{{ route('admin.users.index') }}?user_type=admin",
+            ajax: "{{ route('admin.users.index') }}",
             columns: [{
                     data: 'name',
                     name: 'name'
@@ -76,7 +76,7 @@
             event.preventDefault();
 
             // Update the DataTable URL with the selected user type
-            $("#table").DataTable().ajax.url('{{ route('admin.users.index') }}?user_type=' + userType).load();
+            $("#table").DataTable().ajax.url('{{ route('admin.users.index') }}').load();
 
             // Update the button text
             $("#admin-btn").removeClass("bg-primary");

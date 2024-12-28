@@ -1,8 +1,8 @@
-# Ecommerce Management System - Project Setup Guide
+# Pos Management System - Project Setup Guide
 
 ## Overview
 
-Welcome to the setup guide for the **Ecommerce Management System**. This document provides comprehensive steps to install, configure, and run the project in your local environment, using both Docker and a native setup. Follow these instructions to ensure proper configuration.
+Welcome to the setup guide for the **Pos Management System**. This document provides comprehensive steps to install, configure, and run the project in your local environment, using both Docker and a native setup. Follow these instructions to ensure proper configuration.
 
 ## Prerequisites
 
@@ -47,8 +47,8 @@ This guide covers two setup methods:
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/azizulbsc/ecommerce-management.git
-cd ecommerce-management
+git clone https://github.com/azizulbsc/pos-management.git
+cd pos-management
 ```
 
 #### 2. Initialize the Project
@@ -100,8 +100,8 @@ The application should now be accessible at [http://localhost](http://localhost)
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/azizulbsc/ecommerce-management.git
-cd ecommerce-management
+git clone https://github.com/azizulbsc/pos-management.git
+cd pos-management
 ```
 
 #### 2. Install PHP and npm Dependencies
@@ -141,13 +141,13 @@ php artisan key:generate
 2. **Create Database**:
 
     ```sql
-    CREATE DATABASE coaching_management;
+    CREATE DATABASE pos_management;
     ```
 
 3. **Grant User Permissions**:
 
     ```sql
-    GRANT ALL ON coaching_management.* TO '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
+    GRANT ALL ON pos_management.* TO '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
     ```
 
 4. **Apply Changes and Exit**:
@@ -163,7 +163,7 @@ php artisan key:generate
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
-    DB_DATABASE=coaching_management
+    DB_DATABASE=pos_management
     DB_USERNAME={your_username}
     DB_PASSWORD={your_password}
     ```

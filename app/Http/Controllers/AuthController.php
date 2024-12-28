@@ -15,6 +15,7 @@ class AuthController extends Controller
     // function to show login page
     public function loginView()
     {
+
         return view('auth.login');
     }
 
@@ -22,18 +23,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'phone' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
         $remember = $request->has('remember_me') ? true : false;
 
-        if (auth()->attempt(['phone' => $request->phone, 'password' => $request->password], $remember)) {
-            return redirect()->route(
-                auth()->user()->user_type ? 'admin.dashboard' : 'user.dashboard'
-            );
+        if (auth()->attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
+            return redirect()->route( 'admin.dashboard');
         }
-
         return back()->withErrors(['login' => 'Invalid credentials']);
     }
 
@@ -47,33 +45,29 @@ class AuthController extends Controller
     // function to show signup page
     public function signupView()
     {
-        return abort(403, 'Unauthorized action.');
-
         return view('auth.signup');
     }
 
     // function to signup user
     public function signup(Request $request)
     {
-        return abort(403, 'Unauthorized action.');
-
         $request->validate([
             'name' => 'required',
+            'email' => 'required|unique:users,email',
             'phone' => 'required|unique:users,phone',
             'password' => 'required|confirmed',
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'email' => $request->email,
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
         ]);
 
         auth()->login($user);
 
-        return redirect(
-            auth()->user()->getRedirectUrl()
-        );
+        return to_route('admin.dashboard');
     }
 
     // function to show profile page

@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Get all payments
-        $data['total_student'] = 123;
+        $data['total_product'] = 123;
         $data['total_estimated_collection'] = 123123;
         $data['total_collection'] = 123123;
         $data['total_due'] = 123123;

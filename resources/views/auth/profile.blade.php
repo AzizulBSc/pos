@@ -151,16 +151,8 @@
                                 </form>
 
                                 <h3 class="mt-3">{{ auth()->user()->name }}</h3>
-                                <p class="badge bg-primary">
-                                    @if (auth()->user()->user_type == 'admin')
-                                        Admin User
-                                    @elseif (auth()->user()->user_type == 'teacher')
-                                        #{{ auth()->user()->teacher->teacher_id }}
-                                    @elseif (auth()->user()->user_type == 'student')
-                                        #{{ auth()->user()->student->reg_id }}
-                                    @else
-                                        {{ auth()->user()->phone }}
-                                    @endif
+                                <p class="badge bg-primary"> 
+                                  Admin User
                                 </p>
                             </div>
                         </div>

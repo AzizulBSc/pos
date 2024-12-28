@@ -23,8 +23,7 @@ class UserController extends Controller
         }
 
         if (request()->ajax()) {
-            $users = User::where('user_type', request()->user_type)
-                ->latest();
+            $users = User::latest();
 
             return DataTables::of($users)
                 ->addIndexColumn()
@@ -69,19 +68,11 @@ class UserController extends Controller
         if (!auth()->user()->can('create_user')) {
             abort(403, 'Unauthorized action.');
         }
-
         $request->validate([
             'name' => 'required',
             'phone' => 'required|unique:users,phone',
             'email' => 'nullable|unique:users,email',
             'password' => 'required',
-            'role' => 'required',
-            'user_type' => 'required|in:admin,teacher',
-            'qualification' => 'required_if:user_type,teacher',
-            'nid_number' => 'required_if:user_type,teacher',
-            'address' => 'required_if:user_type,teacher',
-            'contact_name' => 'required_if:user_type,teacher',
-            'contact_phone' => 'required_if:user_type,teacher',
         ]);
 
         try {
@@ -90,24 +81,7 @@ class UserController extends Controller
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
-                'user_type' => $request->user_type
             ]);
-
-            if ($request->user_type == 'teacher') {
-                Teacher::create([
-                    'user_id' => $user->id,
-                    'teacher_id' => rand(1000, 9999) . $user->id,
-                    'qualification' => $request->qualification,
-                    'nid_number' => $request->nid_number,
-                    'address' => $request->address,
-                    'emergency_contact' => json_encode([
-                        'name' => $request->contact_name,
-                        'phone' => $request->contact_phone
-                    ]),
-                    'created_by' => auth()->id(),
-                    'updated_by' => auth()->id()
-                ]);
-            }
 
             if ($request->filled('role')) {
                 $user->assignRole($request->role);
@@ -150,14 +124,7 @@ class UserController extends Controller
             'name' => 'required',
             'phone' => 'required|unique:users,phone,' . $user->id,
             'email' => 'nullable|unique:users,email,' . $user->id,
-            'role' => 'required',
             'status' => 'required|boolean',
-            'user_type' => 'required|in:admin,teacher',
-            'qualification' => 'required_if:user_type,teacher',
-            'nid_number' => 'required_if:user_type,teacher',
-            'address' => 'required_if:user_type,teacher',
-            'contact_name' => 'required_if:user_type,teacher',
-            'contact_phone' => 'required_if:user_type,teacher',
         ]);
 
         try {
@@ -166,43 +133,8 @@ class UserController extends Controller
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'password' => $request->password ? bcrypt($request->password) : $user->password,
-                'user_type' => $request->user_type,
                 'status' => $request->status,
             ]);
-
-            if ($request->user_type == 'teacher') {
-                if ($user->teacher) {
-                    $user->teacher->update([
-                        'qualification' => $request->qualification,
-                        'nid_number' => $request->nid_number,
-                        'address' => $request->address,
-                        'emergency_contact' => json_encode([
-                            'name' => $request->contact_name,
-                            'phone' => $request->contact_phone
-                        ]),
-                        'updated_by' => auth()->id()
-                    ]);
-                } else {
-                    Teacher::create([
-                        'user_id' => $user->id,
-                        'teacher_id' => rand(1000, 9999) . $user->id,
-                        'qualification' => $request->qualification,
-                        'nid_number' => $request->nid_number,
-                        'address' => $request->address,
-                        'emergency_contact' => json_encode([
-                            'name' => $request->contact_name,
-                            'phone' => $request->contact_phone
-                        ]),
-                        'created_by' => auth()->id(),
-                        'updated_by' => auth()->id()
-                    ]);
-                }
-            } else {
-                if ($user->teacher) {
-                    $user->teacher->delete();
-                }
-            }
-
             if ($request->filled('role')) {
                 $user->syncRoles($request->role);
             }

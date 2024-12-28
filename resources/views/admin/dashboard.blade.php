@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-8">
                                         <h6 class="text-muted font-semibold">Total Products</h6>
-                                        <h6 class="font-extrabold mb-0">{{ $data['total_student'] }}</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $data['total_product'] }}</h6>
                                     </div>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7e82117fab9b22bcb5789d63a7565a1",
+    "content-hash": "d1d7e93528ff32ed3bd360f2ec08eec8",
     "packages": [
         {
             "name": "brick/math",
@@ -2261,63 +2261,6 @@
                 }
             ],
             "time": "2024-11-12T13:57:08+00:00"
-        },
-        {
-            "name": "muhaiminshihab/ctaroutes",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/muhaiminShihab/cta-routes.git",
-                "reference": "3ae86129747ebfb2c2b71cbd2ca69f21449c0da6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/muhaiminShihab/cta-routes/zipball/3ae86129747ebfb2c2b71cbd2ca69f21449c0da6",
-                "reference": "3ae86129747ebfb2c2b71cbd2ca69f21449c0da6",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
-                "php": "^7.3|^8.0|^8.1|^8.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "MuhaiminShihab\\CtaRoutes\\CtaRoutesServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MuhaiminShihab\\CtaRoutes\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Muhaimin Shihab",
-                    "email": "hostforshihab@gmail.com"
-                }
-            ],
-            "description": "CtaRoutes is a Laravel package that provides a set of convenient routes for common Artisan commands.",
-            "keywords": [
-                "composer-package",
-                "cta-routes",
-                "laravel",
-                "laravel-artisan-commands",
-                "laravel-framework",
-                "laravel-package",
-                "laravel-routes"
-            ],
-            "support": {
-                "issues": "https://github.com/muhaiminShihab/cta-routes/issues",
-                "source": "https://github.com/muhaiminShihab/cta-routes/tree/v1.0.2"
-            },
-            "time": "2024-11-03T09:01:42+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -10068,5 +10011,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

@@ -41,38 +41,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public function getRedirectUrl()
-    {
-        switch ($this->attributes['user_type']) {
-            case 'admin':
-                return route('admin.dashboard');
-                break;
-
-            case 'teacher':
-                return route('admin.dashboard');
-                break;
-
-            case 'student':
-                return route('user.dashboard');
-                break;
-            
-            default:
-                return route('auth.login.show');
-                break;
-        }
-    }
-
-    public function teacher()
-    {
-        return $this->hasOne(Teacher::class, 'user_id');
-    }
-
-    public function student()
-    {
-        return $this->hasOne(Student::class, 'user_id');
-    }
-
     public function scopeActive($query)
     {
         return $query->where('status', 1);

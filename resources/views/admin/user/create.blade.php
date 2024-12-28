@@ -75,37 +75,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="user_type" class="form-label">
-                                        Is the user a teacher?
-                                        {{-- <x-tooltips message="Select user type" position="top" /> --}}
-                                    </label>
-
-                                    <div class="d-flex gap-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="user_type"
-                                                id="user_type_yes" value="teacher"
-                                                {{ old('user_type') == 'teacher' ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="user_type_yes">
-                                                Yes
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="user_type"
-                                                id="user_type_no" value="admin"
-                                                {{ old('user_type', 'admin') == 'admin' ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="user_type_no">
-                                                No
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    @error('user_type')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row d-none" id="teacher_info">

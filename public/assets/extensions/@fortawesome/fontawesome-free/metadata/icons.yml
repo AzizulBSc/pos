@@ -8825,7 +8825,7 @@ graduation-cap:
       - graduate
       - learning
       - school
-      - student
+      - product
   styles:
     - solid
   unicode: f19d
@@ -15998,7 +15998,7 @@ school:
       - building
       - education
       - learn
-      - student
+      - product
       - teacher
   styles:
     - solid
@@ -19946,7 +19946,7 @@ university:
       - bank
       - building
       - college
-      - higher education - students
+      - higher education - products
       - institution
   styles:
     - solid
@@ -20239,7 +20239,7 @@ user-graduate:
       - gown
       - graduation
       - person
-      - student
+      - product
   styles:
     - solid
   unicode: f501

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('avatar')->nullable();
             $table->string('password');
-            $table->enum('user_type', ['admin', 'teacher', 'student'])->default('student');
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
