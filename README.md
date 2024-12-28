@@ -47,8 +47,8 @@ This guide covers two setup methods:
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/azizulbsc/pos-management.git
-cd pos-management
+git clone https://github.com/AzizulBSc/pos.git
+cd pos
 ```
 
 #### 2. Initialize the Project
@@ -110,18 +110,15 @@ Within the project directory, run:
 
 ```bash
 composer install
-npm install
-npm run build
 ```
 
 #### 3. Configure the Environment
 
-Create the `.env` file by copying the sample configuration:
+Create the `.env` file by copying .env.example :
 
 ```bash
 cp .env.example .env
 ```
-
 #### 4. Generate Application Key
 
 Secure the application by generating a key:
@@ -131,41 +128,16 @@ php artisan key:generate
 ```
 
 #### 5. Configure Database
-
-1. **Access MySQL**:
-
-    ```bash
-    mysql -u {username} -p
-    ```
-
-2. **Create Database**:
-
-    ```sql
-    CREATE DATABASE pos;
-    ```
-
-3. **Grant User Permissions**:
-
-    ```sql
-    GRANT ALL ON pos.* TO '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
-    ```
-
-4. **Apply Changes and Exit**:
-
-    ```sql
-    FLUSH PRIVILEGES;
-    EXIT;
-    ```
-
-5. **Update `.env` Database Settings**:
+Create a Database name pos in your db. and then update your .env file as like following:
+**Update `.env` Database Settings**:
 
     ```plaintext
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=pos
-    DB_USERNAME={your_username}
-    DB_PASSWORD={your_password}
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
     ```
 
 #### 6. Run Migrations and Seed Data
@@ -188,8 +160,3 @@ Your application will be available at [http://127.0.0.1:8000](http://127.0.0.1:8
 
 ---
 
-## Additional Information
-
-- **Seeding**: The database seeder is configured to populate initial data. Run `php artisan migrate --seed` to use it.
-- **Environment Variables**: Ensure all necessary environment variables are set in the `.env` file.
-- **Database Configuration**: The application is configured for MySQL by default. Update the `.env` file as needed for other database connections.
