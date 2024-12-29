@@ -52,6 +52,7 @@ function deleteResource(url) {
                     });
                 },
                 error: function (error) {
+                    console.log("error:", error);
                     Swal.fire({
                         title: "Oops!",
                         text: "Something is wrong, try again.",

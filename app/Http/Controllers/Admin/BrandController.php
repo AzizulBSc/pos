@@ -4,23 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Traits\ImageUploadTrait;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Psy\Exception\ThrowUpException;
 use Yajra\DataTables\DataTables;
 
 class BrandController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $brands = Brand::get();
+            $brands = Brand::latest();
             return DataTables::of($brands)
                 ->addIndexColumn()
                 ->editColumn('image', function ($data) {
-                    return '<img src="' . $data->image . '" alt="Brand Image" loading="lazy" style="width:50px; height:auto;">';
+                    return '<img src="' . absolutePath($data->image) . '" alt="Brand Image" loading="lazy" style="width:50px; height:auto;">';
                 })
                 ->editColumn('name', fn($data) => $data->name)
                 ->addColumn('action', function ($row) {
@@ -49,17 +53,16 @@ class BrandController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'brand_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|boolean',
+            'status' => 'boolean',
         ]);
-        $brand = Brand::create($request->except('brand_image'));
+        $brand = Brand::create($request->except('brand_image', '_token'));
         if ($request->hasFile("brand_image")) {
-            $imageName = time() . '.' . $request->brand_image->extension();
-            $request->brand_image->storeAs('public/brands', $imageName);
-            $brand->image = $imageName;
+            $filePath = $this->uploadImage($request->file('brand_image'), 'media/brands');
+            $brand->image = $filePath;
             $brand->save();
         }
 
-        return to_route('admin.brand.index')->with('success', 'Brand created successfully!');
+        return to_route('admin.brands.index')->with('success', 'Brand created successfully!');
     }
 
     /**
@@ -88,26 +91,22 @@ class BrandController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'brand_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|boolean',
+            'status' => 'boolean',
         ]);
 
         $brand = Brand::findOrFail($id);
-        $brand->update($request->except('brand_image'));
+        $brand->update($request->except('brand_image', '_token'));
 
         if ($request->hasFile("brand_image")) {
-            // Delete old image if exists
             if ($brand->image) {
-                Storage::delete('public/brands/' . $brand->image);
+                $this->deleteImage($brand->image);
             }
-
-            // Upload new image
-            $imageName = time() . '.' . $request->brand_image->extension();
-            $request->brand_image->storeAs('public/brands', $imageName);
-            $brand->image = $imageName;
+            $filePath = $this->uploadImage($request->file('brand_image'), 'media/brands');
+            $brand->image = $filePath;
             $brand->save();
         }
 
-        return to_route('admin.brand.index')->with('success', 'Brand updated successfully!');
+        return to_route('admin.brands.index')->with('success', 'Brand updated successfully!');
     }
 
     /**
@@ -115,14 +114,15 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        $brand = Brand::findOrFail($id);
-
-        // Delete image if exists
-        if ($brand->image) {
-            Storage::delete('public/brands/' . $brand->image);
+        try {
+            $brand = Brand::findOrFail($id);
+            if ($brand->image) {
+                $this->deleteImage($brand->image);
+            }
+            $brand->delete();
+            return true;
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        $brand->delete();
-        return to_route('admin.brand.index')->with('success', 'Brand deleted successfully!');
     }
 }
