@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('auth.login.show');
 });
+Route::get('/login', [AuthController::class, 'loginView'])->name('login');
 
 // auth routes
 Route::prefix('auth')->as('auth.')->group(function () {

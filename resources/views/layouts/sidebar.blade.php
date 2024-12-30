@@ -54,21 +54,41 @@
             </li>
             @endcan
 
-            @can('view_users')
+            @can('view_brand')
             <li class="sidebar-item has-sub {{ Route::is('admin.brands.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
                     <i class="bi bi-people"></i>
                     <span>Brand</span>
                 </a>
                 <ul class="submenu {{ Route::is('admin.brands.*') ? 'submenu-open' : 'submenu-close' }}">
-                    @can('view_users')
+                    @can('view_brand')
                     <li class="submenu-item {{ Route::is('admin.brands.index') ? 'active' : '' }}">
                         <a href="{{ route('admin.brands.index') }}">Brand List</a>
                     </li>
                     @endcan
-                    @can('create_user')
+                    @can('create_brand')
                     <li class="submenu-item {{ Route::is('admin.brands.create') ? 'active' : '' }}">
                         <a href="{{ route('admin.brands.create') }}">Add Brand</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
+            @can('view_category')
+            <li class="sidebar-item has-sub {{ Route::is('admin.categories.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Category</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.categories.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_category')
+                    <li class="submenu-item {{ Route::is('admin.categories.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.categories.index') }}">Category List</a>
+                    </li>
+                    @endcan
+                    @can('create_category')
+                    <li class="submenu-item {{ Route::is('admin.categories.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.categories.create') }}">Add Category</a>
                     </li>
                     @endcan
                 </ul>

@@ -48,8 +48,9 @@ class RolePermissionSeeder extends Seeder
             // Orders
             'view_orders', 'create_order', 'update_order', 'delete_order',
             
-            // Categories
-            'view_categories', 'create_category', 'update_category', 'delete_category'
+            'view_category', 'create_category', 'update_category', 'delete_category',
+
+            'view_brand', 'create_brand', 'update_brand', 'delete_brand'
         ];
 
         // Create permissions
