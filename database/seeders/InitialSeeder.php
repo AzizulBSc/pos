@@ -16,6 +16,7 @@ class InitialSeeder extends Seeder
             UserSeeder::class,
             RolePermissionSeeder::class,
             SettingSeeder::class,
+            UnitSeeder::class,
         ]);
     }
 }

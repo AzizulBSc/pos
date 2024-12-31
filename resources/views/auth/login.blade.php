@@ -32,7 +32,7 @@
                 <div class="form-group position-relative has-icon-left mb-4">
                     <input type="email" name="email" required
                         class="form-control form-control-xl {{ $errors->has('email') ? 'border-danger' : '' }}" placeholder="Email"
-                        value="{{ old('email') }}">
+                        value="{{ old('email','admin@gmail.com') }}">
                     <div class="form-control-icon">
                         <i class="bi bi-envelope"></i>
                     </div>
@@ -42,7 +42,7 @@
                     @enderror
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password" name="password"required
+                    <input type="password" name="password" required value="12345678"
                         class="form-control form-control-xl {{ $errors->has('password') ? 'border-danger' : '' }}""
                         placeholder=" Password">
                     <div class="form-control-icon">

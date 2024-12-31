@@ -15,37 +15,43 @@ class UnitSeeder extends Seeder
     {
         $units = [
             [
-                'title' => 'Piece',
+                'name' => 'Piece',
                 'short_name' => 'pcs',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Kilogram',
+                'name' => 'Kilogram',
                 'short_name' => 'kg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Liter',
+                'name' => 'Pound',
+                'short_name' => 'pnd',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Liter',
                 'short_name' => 'L',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Meter',
+                'name' => 'Meter',
                 'short_name' => 'm',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Dozen',
+                'name' => 'Dozen',
                 'short_name' => 'dz',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Box',
+                'name' => 'Box',
                 'short_name' => 'box',
                 'created_at' => now(),
                 'updated_at' => now(),

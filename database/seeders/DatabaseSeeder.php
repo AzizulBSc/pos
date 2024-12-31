@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             InitialSeeder::class,
-            DataSeeder::class,
+            DataSeeder::class,//all fake data seeder if no need please removed or comment it
         ]);
     }
 }

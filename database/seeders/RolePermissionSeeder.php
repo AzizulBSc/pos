@@ -31,26 +31,59 @@ class RolePermissionSeeder extends Seeder
         // Define permissions by groups
         $permissions = [
             // User management
-            'view_users', 'create_user', 'update_user', 'delete_user',
-            
+            'view_users',
+            'create_user',
+            'update_user',
+            'delete_user',
             // Role management
-            'view_roles', 'create_role', 'update_role', 'delete_role', 'role_permissions',
-            
+            'view_roles',
+            'create_role',
+            'update_role',
+            'delete_role',
+            'role_permissions',
             // Permission management
-            'view_permissions', 'create_permission', 'update_permission', 'delete_permission',
-            
+            'view_permissions',
+            'create_permission',
+            'update_permission',
+            'delete_permission',
             // Settings
-            'view_settings', 'update_settings',
-            
+            'view_settings',
+            'update_settings',
             // Products
-            'view_products', 'create_product', 'update_product', 'delete_product',
-            
+            'view_products',
+            'create_product',
+            'update_product',
+            'delete_product',
             // Orders
-            'view_orders', 'create_order', 'update_order', 'delete_order',
-            
-            'view_category', 'create_category', 'update_category', 'delete_category',
-
-            'view_brand', 'create_brand', 'update_brand', 'delete_brand'
+            'view_orders',
+            'create_order',
+            'update_order',
+            'delete_order',
+            //category
+            'view_category',
+            'create_category',
+            'update_category',
+            'delete_category',
+            //brand
+            'view_brands',
+            'create_brand',
+            'update_brand',
+            'delete_brand',
+            //unit
+            'view_units',
+            'create_unit',
+            'update_unit',
+            'delete_unit',
+            //supplier
+            'view_suppliers',
+            'create_supplier',
+            'update_supplier',
+            'delete_supplier',
+            //customer
+            'view_customers',
+            'create_customer',
+            'update_customer',
+            'delete_customer',
         ];
 
         // Create permissions
@@ -70,8 +103,11 @@ class RolePermissionSeeder extends Seeder
 
         // Assign limited permissions to manager role
         $managerRole->syncPermissions(Permission::whereIn('name', [
-            'view_products', 'create_product', 'update_product',
-            'view_orders', 'update_order',
+            'view_products',
+            'create_product',
+            'update_product',
+            'view_orders',
+            'update_order',
             'view_categories'
         ])->get());
 

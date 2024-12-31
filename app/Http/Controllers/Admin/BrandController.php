@@ -7,8 +7,6 @@ use App\Models\Brand;
 use App\Traits\ImageUploadTrait;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Psy\Exception\ThrowUpException;
 use Yajra\DataTables\DataTables;
 
 class BrandController extends Controller
@@ -19,7 +17,7 @@ class BrandController extends Controller
      */
     public function index(Request $request)
     {
-        abort_if(!auth()->user()->can('view_brand'), 403);
+        abort_if(!auth()->user()->can('view_brands'), 403);
         if ($request->ajax()) {
             $brands = Brand::latest();
             return DataTables::of($brands)

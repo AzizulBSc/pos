@@ -54,14 +54,14 @@
             </li>
             @endcan
 
-            @can('view_brand')
+            @can('view_brands')
             <li class="sidebar-item has-sub {{ Route::is('admin.brands.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
                     <i class="bi bi-people"></i>
                     <span>Brand</span>
                 </a>
                 <ul class="submenu {{ Route::is('admin.brands.*') ? 'submenu-open' : 'submenu-close' }}">
-                    @can('view_brand')
+                    @can('view_brands')
                     <li class="submenu-item {{ Route::is('admin.brands.index') ? 'active' : '' }}">
                         <a href="{{ route('admin.brands.index') }}">Brand List</a>
                     </li>
@@ -89,6 +89,46 @@
                     @can('create_category')
                     <li class="submenu-item {{ Route::is('admin.categories.create') ? 'active' : '' }}">
                         <a href="{{ route('admin.categories.create') }}">Add Category</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
+            @can('view_units')
+            <li class="sidebar-item has-sub {{ Route::is('admin.units.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Unit</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.units.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_units')
+                    <li class="submenu-item {{ Route::is('admin.units.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.units.index') }}">Unit List</a>
+                    </li>
+                    @endcan
+                    @can('create_unit')
+                    <li class="submenu-item {{ Route::is('admin.units.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.units.create') }}">Add Unit</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
+            @can('view_products')
+            <li class="sidebar-item has-sub {{ Route::is('admin.products.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Product</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.products.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_products')
+                    <li class="submenu-item {{ Route::is('admin.products.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.products.index') }}">Product List</a>
+                    </li>
+                    @endcan
+                    @can('create_product')
+                    <li class="submenu-item {{ Route::is('admin.products.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.products.create') }}">Add Product</a>
                     </li>
                     @endcan
                 </ul>

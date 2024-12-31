@@ -7,8 +7,6 @@ use App\Models\Category;
 use App\Traits\ImageUploadTrait;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Psy\Exception\ThrowUpException;
 use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
