@@ -134,6 +134,46 @@
                 </ul>
             </li>
             @endcan
+            @can('view_customers')
+            <li class="sidebar-item has-sub {{ Route::is('admin.customers.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Customer</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.customers.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_customers')
+                    <li class="submenu-item {{ Route::is('admin.customers.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.customers.index') }}">Customer List</a>
+                    </li>
+                    @endcan
+                    @can('create_customer')
+                    <li class="submenu-item {{ Route::is('admin.customers.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.customers.create') }}">Add Customer</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
+            @can('view_suppliers')
+            <li class="sidebar-item has-sub {{ Route::is('admin.suppliers.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Supplier</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.suppliers.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_suppliers')
+                    <li class="submenu-item {{ Route::is('admin.suppliers.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.suppliers.index') }}">Supplier List</a>
+                    </li>
+                    @endcan
+                    @can('create_supplier')
+                    <li class="submenu-item {{ Route::is('admin.suppliers.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.suppliers.create') }}">Add Supplier</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
             @can('view_settings')
             <li class="sidebar-item has-sub {{ Route::is('admin.settings.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="sidebar-link toggle-submenu">

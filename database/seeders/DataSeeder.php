@@ -17,6 +17,8 @@ class DataSeeder extends Seeder
             CategorySeeder::class,
             ProductSeeder::class,
             FakeUsersSeeder::class,
+            CustomerSeeder::class,
+            SupplierSeeder::class,
         ]);
     }
 }

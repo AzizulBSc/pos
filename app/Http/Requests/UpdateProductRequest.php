@@ -33,7 +33,7 @@ class UpdateProductRequest extends FormRequest
             'brand_id' => 'nullable|exists:brands,id',
             'unit_id' => 'nullable|exists:units,id',
             'price' => 'required|numeric|min:0',
-            'discount_type' => 'nullable|in:fixed,percentage"|required_with:discount',
+            'discount_type' => 'nullable|in:fixed,percentage|required_with:discount',
             'discount' => 'nullable|numeric|min:0|required_with:discount_type',
             'purchase_price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',

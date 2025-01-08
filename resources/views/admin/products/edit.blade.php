@@ -168,8 +168,8 @@
               <div class="form-group">
                 <label for="discount_type" class="form-label">Discount Type</label>
                 <select name="discount_type" id="discount_type" class="form-control">
-                  <option value="fixed" {{ old('discount_type', $product->discount_type ?? '') == 'fixed' ? 'selected' : '' }}>Fixed</option>
-                  <option value="percentage" {{ old('discount_type', $product->discount_type ?? '') == 'percentage' ? 'selected' : '' }}>Percentage</option>
+                  <option value="fixed" {{ old('discount_type', $product->discount_type) == 'fixed' ? 'selected' : '' }}>Fixed</option>
+                  <option value="percentage" {{ old('discount_type', $product->discount_type ) == 'percentage' ? 'selected' : '' }}>Percentage</option>
                 </select>
 
                 @error('discount_type')
