@@ -17,6 +17,7 @@ class InitialSeeder extends Seeder
             RolePermissionSeeder::class,
             SettingSeeder::class,
             UnitSeeder::class,
+            CurrencySeeder::class,
         ]);
     }
 }

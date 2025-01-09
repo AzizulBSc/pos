@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\User\PermissionController;
 use App\Http\Controllers\Admin\User\RoleController;
 use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Admin\PurchaseController;
+use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\TestController;
 use App\Models\Customer;
@@ -56,6 +58,10 @@ Route::prefix('admin')->as('admin.')->middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('customers',  CustomerController::class);
     Route::resource('suppliers', SupplierController::class);
+    Route::resource('purchases', PurchaseController::class);
+    Route::get('purchase/products/{id}', [PurchaseController::class, 'purchaseProducts'])->name('purchase.products');
+
+    Route::resource('sales', SaleController::class);
 
 
     // setting routes

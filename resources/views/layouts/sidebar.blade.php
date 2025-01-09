@@ -134,6 +134,26 @@
                 </ul>
             </li>
             @endcan
+            @can('view_purchases')
+            <li class="sidebar-item has-sub {{ Route::is('admin.purchases.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Purchase</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.purchases.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_purchases')
+                    <li class="submenu-item {{ Route::is('admin.purchases.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.purchases.index') }}">Purchase List</a>
+                    </li>
+                    @endcan
+                    @can('create_purchase')
+                    <li class="submenu-item {{ Route::is('admin.purchases.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.purchases.create') }}">Add Purchase</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
             @can('view_customers')
             <li class="sidebar-item has-sub {{ Route::is('admin.customers.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="sidebar-link toggle-submenu">

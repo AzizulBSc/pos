@@ -54,11 +54,16 @@ class RolePermissionSeeder extends Seeder
             'create_product',
             'update_product',
             'delete_product',
-            // Orders
-            'view_orders',
-            'create_order',
-            'update_order',
-            'delete_order',
+            // Purchase
+            'view_purchases',
+            'create_purchase',
+            'update_purchase',
+            'delete_purchase',
+            // Sales
+            'view_sales',
+            'create_sale',
+            'update_sale',
+            'delete_sale',
             //category
             'view_category',
             'create_category',
