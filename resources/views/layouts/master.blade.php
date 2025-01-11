@@ -1,5 +1,5 @@
 @php
-    $title = \App\Models\Setting::where('key', 'app_name')->value('value') ?? config('app.name');
+$title = \App\Models\Setting::where('key', 'app_name')->value('value') ?? config('app.name');
 @endphp
 
 <!DOCTYPE html>
@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/flatpickr/flatpickr.min.css') }}">
 
+    @viteReactRefresh
     @vite('public/assets/scss/pages/datatables.scss')
     @vite('public/assets/scss/app.scss')
     @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-    
+    @vite('resources/js/app.jsx')
     @stack('css')
 </head>
 

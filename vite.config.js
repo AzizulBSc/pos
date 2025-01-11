@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import react from "@vitejs/plugin-react";
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
@@ -7,7 +7,7 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/css/app.css",
-                "resources/js/app.js",
+                "resources/js/app.jsx",
                 "public/assets/scss/app.scss",
                 "public/assets/scss/pages/auth.scss",
                 "public/assets/scss/pages/datatables.scss",
@@ -17,7 +17,7 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        vue(),
+        react(),
     ],
     server: {
         proxy: {
@@ -29,3 +29,4 @@ export default defineConfig({
         },
     },
 });
+

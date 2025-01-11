@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 // use App\Imports\ProductsImport;
+use App\Http\Resources\ProductResource;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -48,6 +49,24 @@ class ProductController extends Controller
                 })
                 ->rawColumns(['image', 'name', 'price', 'quantity', 'status', 'created_at', 'action'])
                 ->toJson();
+        }
+        if ($request->wantsJson()) {
+            $request->validate([
+                'search' => 'required|string|max:255',
+            ]);
+
+            // Initialize the query
+            $products = Product::query();
+
+            // Apply filters based on the search term
+            $products = $products->where(function ($query) use ($request) {
+                $query->where('name', 'LIKE', "%{$request->search}%")
+                ->orWhere('sku', $request->search);
+            });
+            // Get the results
+            $products = $products->get();
+            // Return the results as a JSON response
+            return ProductResource::collection($products);
         }
         return view('admin.products.index');
     }
