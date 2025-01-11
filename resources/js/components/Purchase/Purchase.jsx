@@ -12,7 +12,8 @@ export default function Purchase() {
         label: "Own Supplier",
     });
     const [purchaseId, setPurchaseId] = useState(null);
-    const [date, setDate] = useState(null);
+     const today = new Date().toISOString().split("T")[0];
+     const [date, setDate] = useState(today);
     const [supplierId, setSupplierId] = useState(null);
     const [tax, setTax] = useState(0);
     const [discount, setDiscount] = useState(0);
@@ -298,7 +299,7 @@ export default function Purchase() {
                         <div className="row mb-2">
                             <div className="input-group col-6">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text">
+                                    <span className="input-group-text form-control form-control-lg">
                                         <i className="fas fa-search"></i>
                                     </span>
                                 </div>
@@ -312,9 +313,10 @@ export default function Purchase() {
                                     placeholder="Enter product barcode/name"
                                 />
                                 <button
-                                    className="btn bg-gradient-primary ml-2"
+                                    className="btn btn-primary"
                                     onClick={handleSearchAdd}
                                 >
+                                    <i className="fas fa-plus"></i>
                                     Add Product
                                 </button>
                             </div>
@@ -506,7 +508,7 @@ export default function Purchase() {
                 </div>
                 <button
                     type="submit"
-                    className="btn btn-md bg-gradient-primary"
+                    className="btn btn-md btn-primary"
                     onClick={handleSubmit}
                 >
                     Create

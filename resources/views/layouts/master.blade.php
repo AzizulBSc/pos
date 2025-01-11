@@ -19,7 +19,7 @@ $title = \App\Models\Setting::where('key', 'app_name')->value('value') ?? config
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/flatpickr/flatpickr.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('assets/extensions/@fortawesome\fontawesome-free\css/all.min.css') }}">
     @viteReactRefresh
     @vite('public/assets/scss/pages/datatables.scss')
     @vite('public/assets/scss/app.scss')

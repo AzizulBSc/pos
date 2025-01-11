@@ -51,7 +51,7 @@
       {
         data: 'supplier',
         name: 'supplier'
-      }, ,
+      },
       {
         data: 'id',
         name: 'id'
