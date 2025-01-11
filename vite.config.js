@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import laravel from 'laravel-vite-plugin';
+import laravel from "laravel-vite-plugin";
 
 export default defineConfig({
     plugins: [
@@ -29,4 +29,3 @@ export default defineConfig({
         },
     },
 });
-

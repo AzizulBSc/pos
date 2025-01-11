@@ -3,9 +3,8 @@
 
 // Bootstrap + Icons
 $bootstrap-icons-font-src: url('bootstrap-icons/font/fonts/bootstrap-icons.woff2') format("woff") !default;
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons/font/bootstrap-icons";
-
+@import "/node_modules/bootstrap/scss/bootstrap";
+@import "/node_modules/bootstrap-icons/font/bootstrap-icons";
 // Fix icon placement
 body .bi::before, [class^=bi-]::before, [class*=" bi-"]::before {
     vertical-align: sub;
@@ -15,7 +14,7 @@ body .bi::before, [class^=bi-]::before, [class*=" bi-"]::before {
 @import "./fonts";
 
 // Perfect Scrollbar
-@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "/node_modules/perfect-scrollbar/css/perfect-scrollbar.css";
 
 // Mazer CSS
 @import "./mazer";

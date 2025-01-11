@@ -1,20 +1,98 @@
 {
-  "resources/js/app.jsx": {
-    "file": "assets/app-C5YUV6u9.js",
-    "name": "app",
-    "src": "resources/js/app.jsx",
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-476adf42.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "public/assets/js/bootstrap.min.js": {
+    "file": "assets/bootstrap.min-56e7567d.js",
     "isEntry": true,
+    "src": "public/assets/js/bootstrap.min.js"
+  },
+  "public/assets/js/popper.min.js": {
+    "file": "assets/popper.min-02f437ca.js",
+    "isEntry": true,
+    "src": "public/assets/js/popper.min.js"
+  },
+  "public/assets/scss/app.scss": {
+    "file": "assets/app-7bbc65b3.css",
+    "isEntry": true,
+    "src": "public/assets/scss/app.scss"
+  },
+  "public/assets/scss/pages/auth.scss": {
+    "file": "assets/auth-7c5c8f11.css",
+    "isEntry": true,
+    "src": "public/assets/scss/pages/auth.scss"
+  },
+  "public/assets/scss/pages/datatables.scss": {
+    "file": "assets/datatables-5195edb8.css",
+    "isEntry": true,
+    "src": "public/assets/scss/pages/datatables.scss"
+  },
+  "public/assets/scss/pages/error.scss": {
+    "file": "assets/error-3a2812b6.css",
+    "isEntry": true,
+    "src": "public/assets/scss/pages/error.scss"
+  },
+  "public/assets/static/fonts/nunito-latin-300-normal.woff": {
+    "file": "assets/nunito-latin-300-normal-152a993a.woff",
+    "src": "public/assets/static/fonts/nunito-latin-300-normal.woff"
+  },
+  "public/assets/static/fonts/nunito-latin-300-normal.woff2": {
+    "file": "assets/nunito-latin-300-normal-ce8a080d.woff2",
+    "src": "public/assets/static/fonts/nunito-latin-300-normal.woff2"
+  },
+  "public/assets/static/fonts/nunito-latin-400-normal.woff": {
+    "file": "assets/nunito-latin-400-normal-6a10fc2f.woff",
+    "src": "public/assets/static/fonts/nunito-latin-400-normal.woff"
+  },
+  "public/assets/static/fonts/nunito-latin-400-normal.woff2": {
+    "file": "assets/nunito-latin-400-normal-5e2f97ea.woff2",
+    "src": "public/assets/static/fonts/nunito-latin-400-normal.woff2"
+  },
+  "public/assets/static/fonts/nunito-latin-600-normal.woff": {
+    "file": "assets/nunito-latin-600-normal-428a6676.woff",
+    "src": "public/assets/static/fonts/nunito-latin-600-normal.woff"
+  },
+  "public/assets/static/fonts/nunito-latin-600-normal.woff2": {
+    "file": "assets/nunito-latin-600-normal-4e1f5eed.woff2",
+    "src": "public/assets/static/fonts/nunito-latin-600-normal.woff2"
+  },
+  "public/assets/static/fonts/nunito-latin-700-normal.woff": {
+    "file": "assets/nunito-latin-700-normal-70134519.woff",
+    "src": "public/assets/static/fonts/nunito-latin-700-normal.woff"
+  },
+  "public/assets/static/fonts/nunito-latin-700-normal.woff2": {
+    "file": "assets/nunito-latin-700-normal-923eb1ee.woff2",
+    "src": "public/assets/static/fonts/nunito-latin-700-normal.woff2"
+  },
+  "public/assets/static/fonts/nunito-latin-800-normal.woff": {
+    "file": "assets/nunito-latin-800-normal-44037052.woff",
+    "src": "public/assets/static/fonts/nunito-latin-800-normal.woff"
+  },
+  "public/assets/static/fonts/nunito-latin-800-normal.woff2": {
+    "file": "assets/nunito-latin-800-normal-0e63ca0b.woff2",
+    "src": "public/assets/static/fonts/nunito-latin-800-normal.woff2"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-60845118.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.jsx": {
     "assets": [
-      "assets/beep-07a-BpTYY3WP.mp3",
-      "assets/beep-02-FDF-YbRr.mp3"
-    ]
+      "assets/beep-07a-24004a82.mp3",
+      "assets/beep-02-4c77c523.mp3"
+    ],
+    "file": "assets/app-2b1e6af2.js",
+    "isEntry": true,
+    "src": "resources/js/app.jsx"
   },
   "resources/js/sounds/beep-02.mp3": {
-    "file": "assets/beep-02-FDF-YbRr.mp3",
+    "file": "assets/beep-02-4c77c523.mp3",
     "src": "resources/js/sounds/beep-02.mp3"
   },
   "resources/js/sounds/beep-07a.mp3": {
-    "file": "assets/beep-07a-BpTYY3WP.mp3",
+    "file": "assets/beep-07a-24004a82.mp3",
     "src": "resources/js/sounds/beep-07a.mp3"
   }
 }
