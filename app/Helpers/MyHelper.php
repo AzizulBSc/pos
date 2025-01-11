@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Currency;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -98,5 +101,14 @@ if (!function_exists('formatSlug')) {
     function formatSlug($slug)
     {
         return ucwords(str_replace('_', ' ', $slug));
+    }
+}
+
+if (!function_exists('currency')) {
+    function currency()
+    {
+        return Cache::remember('default_currency', 60 * 24, function () {
+            return Currency::where('active', true)->first();
+        });
     }
 }

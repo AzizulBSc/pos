@@ -156,7 +156,7 @@ class PurchaseController extends Controller
     public function show(Request $request,$id)
     {
 
-        abort_if(!auth()->user()->can('delete_purchase'), 403);
+        abort_if(!auth()->user()->can('view_purchases'), 403);
         if ($request->wantsJson()) {
             $purchase = Purchase::with('items', 'supplier')->findOrFail($id);
             return $purchase;

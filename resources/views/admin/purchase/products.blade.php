@@ -14,6 +14,8 @@
             Supplier
             <address>
               <strong>Name: {{ $purchase->supplier->name }}</strong><br>
+              <strong>Date: {{ \Carbon\Carbon::parse($purchase->date)->format('d M, Y') }}</strong><br>
+              <strong>No: #{{ $purchase->id }}</strong><br>
             </address>
           </div>
         </div>

@@ -31,7 +31,7 @@ class ProductController extends Controller
             return DataTables::of($products)
                 ->addIndexColumn()
                 ->addColumn('image', fn($data) => '<img src="' . absolutePath($data->image) . '" loading="lazy" alt="' . $data->name . '" class="img-thumb img-fluid" onerror="this.onerror=null; this.src=\'' . asset('assets/images/no-image.png') . '\';" height="80" width="60" />')
-                ->editColumn('name', fn($data) => $data->name)
+                ->editColumn('name', fn($data) => $data->name.'<br>'. $data->sku)
                 ->addColumn(
                     'price',
                     fn($data) => $data->discounted_price .
@@ -61,7 +61,7 @@ class ProductController extends Controller
             // Apply filters based on the search term
             $products = $products->where(function ($query) use ($request) {
                 $query->where('name', 'LIKE', "%{$request->search}%")
-                ->orWhere('sku', $request->search);
+                    ->orWhere('sku', $request->search);
             });
             // Get the results
             $products = $products->get();

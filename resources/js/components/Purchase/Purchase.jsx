@@ -12,8 +12,8 @@ export default function Purchase() {
         label: "Own Supplier",
     });
     const [purchaseId, setPurchaseId] = useState(null);
-     const today = new Date().toISOString().split("T")[0];
-     const [date, setDate] = useState(today);
+    const today = new Date().toISOString().split("T")[0];
+    const [date, setDate] = useState(today);
     const [supplierId, setSupplierId] = useState(null);
     const [tax, setTax] = useState(0);
     const [discount, setDiscount] = useState(0);
@@ -42,10 +42,12 @@ export default function Purchase() {
         }
     }, [purchaseId]);
     const getPurchaseProducts = useCallback(async () => {
-        
         try {
-            const res = await axios.get(`/admin/purchase/${purchaseId}`);
+            const res = await axios.get(
+                `/admin/purchases/${purchaseId}`
+            );
             const purchaseData = res.data;
+            console.log("resp.data:", purchaseData);
             const purchaseProducts = purchaseData?.items?.map((item) => ({
                 item_id: item.id,
                 id: item.product_id,
