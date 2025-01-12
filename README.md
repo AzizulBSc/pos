@@ -130,15 +130,14 @@ php artisan key:generate
 #### 5. Configure Database
 Create a Database name pos in your db. and then update your .env file as like following:
 **Update `.env` Database Settings**:
-
-    ```bash
+```bash
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=pos
     DB_USERNAME=your_username
     DB_PASSWORD=your_password
-    ```
+```
 
 #### 6. Run Migrations and Seed Data
 
