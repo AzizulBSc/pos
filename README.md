@@ -131,7 +131,7 @@ php artisan key:generate
 Create a Database name pos in your db. and then update your .env file as like following:
 **Update `.env` Database Settings**:
 
-    ```plaintext
+    ```bash
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
