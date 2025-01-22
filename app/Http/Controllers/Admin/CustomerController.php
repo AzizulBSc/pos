@@ -47,6 +47,17 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         abort_if(!auth()->user()->can('create_customer'), 403);
+        if ($request->wantsJson()) {
+            $request->validate([
+                'name' => 'required|string',
+            ]);
+
+            $customer = Customer::create([
+                'name' => $request->name,
+            ]);
+
+            return response()->json($customer);
+        }
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|unique:customers,phone',
@@ -105,6 +116,14 @@ class CustomerController extends Controller
             return true;
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    public function getCustomers(Request $request)
+    {
+        if ($request->wantsJson()) {
+            return response()->json(Customer::latest()->get());
         }
     }
 }

@@ -22,6 +22,12 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
+                <a href="{{ route('admin.cart.index') }}" class="sidebar-link">
+                    <i class="bi bi-cart"></i>
+                    <span>POS</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                 <a href="{{ route('admin.dashboard') }}" class="sidebar-link">
                     <i class="bi bi-house-door"></i>
                     <span>Dashboard</span>

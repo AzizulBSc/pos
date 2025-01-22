@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\Pos\CartController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -60,8 +61,20 @@ Route::prefix('admin')->as('admin.')->middleware('auth')->group(function () {
     Route::resource('suppliers', SupplierController::class);
     Route::resource('purchases', PurchaseController::class);
     Route::get('purchase/products/{id}', [PurchaseController::class, 'purchaseProducts'])->name('purchase.products');
-
     Route::resource('sales', SaleController::class);
+
+    // start pos
+    Route::get('/get/products', [CartController::class, 'getProducts'])->name('getProducts');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::put('/cart/increment', [CartController::class, 'increment']);
+    Route::put('/cart/decrement', [CartController::class, 'decrement']);
+    Route::put('/cart/delete', [CartController::class, 'delete']);
+    Route::put('/cart/empty', [CartController::class, 'empty']);
+    Route::put('/order/create', [SaleController::class, 'store']);
+    Route::get('/get/customers', [CustomerController::class, 'getCustomers']);
+    Route::post('/create/customers', [CustomerController::class, 'store']);
+    //end pos
 
 
     // setting routes

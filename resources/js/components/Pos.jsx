@@ -311,9 +311,12 @@ export default function Pos() {
                                                 disabled={total <= 0}
                                                 onChange={(e) => {
                                                     if (e.target.checked) {
-                                                        const fractionalPart =total % 1;
+                                                        const fractionalPart =
+                                                            total % 1;
                                                         setOrderDiscount(
-                                                            fractionalPart?.toFixed(2)
+                                                            fractionalPart?.toFixed(
+                                                                2
+                                                            )
                                                         );
                                                     } else {
                                                         setOrderDiscount(0);
@@ -429,6 +432,7 @@ export default function Pos() {
                                                 <img
                                                     src={`${fullDomainWithPort}/storage/${product.image}`}
                                                     alt={product.name}
+                                                    loading="lazy"
                                                     className="mr-2 img-thumb"
                                                     onError={(e) => {
                                                         e.target.onerror = null;
@@ -444,7 +448,9 @@ export default function Pos() {
                                                     </p>
                                                     <p>
                                                         Price:{" "}
-                                                        {product?.discounted_price}
+                                                        {
+                                                            product?.discounted_price
+                                                        }
                                                     </p>
                                                 </div>
                                             </div>

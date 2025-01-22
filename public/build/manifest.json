@@ -14,7 +14,7 @@
     "src": "public/assets/js/popper.min.js"
   },
   "public/assets/scss/app.scss": {
-    "file": "assets/app-7bbc65b3.css",
+    "file": "assets/app-5b6634ea.css",
     "isEntry": true,
     "src": "public/assets/scss/app.scss"
   },
@@ -83,7 +83,7 @@
       "assets/beep-07a-24004a82.mp3",
       "assets/beep-02-4c77c523.mp3"
     ],
-    "file": "assets/app-2b1e6af2.js",
+    "file": "assets/app-d79ad8fc.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   },
