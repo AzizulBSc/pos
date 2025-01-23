@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Cart from "./Cart";
@@ -33,7 +33,7 @@ export default function Pos() {
         async (search = "", page = 1, barcode = "") => {
             setLoading(true);
             try {
-                const res = await axios.get('/admin/get/products', {
+                const res = await axios.get("/admin/get/products", {
                     params: { search, page, barcode },
                 });
                 const productsData = res.data;
@@ -53,7 +53,7 @@ export default function Pos() {
     );
     const getUpdatedProducts = useCallback(async () => {
         try {
-            const res = await axios.get('/admin/get/products');
+            const res = await axios.get("/admin/get/products");
             const productsData = res.data;
             setProducts(productsData.data);
             setTotalPages(productsData.meta.last_page); // Get total pages
@@ -67,7 +67,7 @@ export default function Pos() {
 
     const getCarts = async () => {
         try {
-            const res = await axios.get('/admin/cart');
+            const res = await axios.get("/admin/cart");
             const data = res.data;
             setTotal(data?.total);
             setUpdateTotal(data?.total - orderDiscount);
@@ -110,7 +110,7 @@ export default function Pos() {
     useEffect(() => {
         if (searchBarcode) {
             setProducts([]);
-           getProducts("", currentPage, searchBarcode);
+            getProducts("", currentPage, searchBarcode);
         }
     }, [searchBarcode]);
 
@@ -241,7 +241,7 @@ export default function Pos() {
 
                 <div className="card-body p-2 p-md-4 pt-0">
                     <div className="row">
-                        <div className="col-md-6 col-lg-5">
+                        <div className="col-md-7 col-lg-7">
                             <div className="row mb-2">
                                 <div className="col-12">
                                     <CustomerSelect
@@ -369,9 +369,10 @@ export default function Pos() {
                                     <button
                                         onClick={() => cartEmpty()}
                                         type="button"
-                                        className="btn btn-danger btn-block"
+                                        className="btn btn-danger"
+                                        title="Delete Cart"
                                     >
-                                        Clear Cart
+                                        <i className="fas fa-trash"></i>
                                     </button>
                                 </div>
                                 <div className="col">
@@ -380,31 +381,33 @@ export default function Pos() {
                                             orderCreate();
                                         }}
                                         type="button"
-                                        className="btn btn-primary btn-block"
+                                        className="btn btn-primary"
                                     >
                                         Checkout
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-7">
+                        <div className="col-md-5 col-lg-5">
                             <div className="row">
-                                <div className="input-group mb-2 col-md-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-barcode"></i>
-                                        </span>
+                                <div className="mb-2 col-md-6">
+                                    <div className="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text form-control form-control-lg">
+                                                <i class="fas fa-barcode"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Enter Product Barcode"
+                                            value={searchBarcode}
+                                            autoFocus
+                                            onChange={(e) =>
+                                                setSearchBarcode(e.target.value)
+                                            }
+                                        />
                                     </div>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Product Barcode"
-                                        value={searchBarcode}
-                                        autoFocus
-                                        onChange={(e) =>
-                                            setSearchBarcode(e.target.value)
-                                        }
-                                    />
                                 </div>
                                 <div className="mb-2 col-md-6">
                                     <input
@@ -425,7 +428,7 @@ export default function Pos() {
                                             onClick={() =>
                                                 addProductToCart(product.id)
                                             }
-                                            className="col-sm-6 col-md-4 col-lg-3 mb-3"
+                                            className="col-sm-6 col-md-4 col-lg-4 mb-3"
                                             key={index}
                                         >
                                             <div className="product-item text-center">

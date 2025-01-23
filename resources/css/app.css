@@ -87,45 +87,6 @@ legend {
 
 
 
-
-.user-cart {
-    .card {
-        height: 400px;
-    }
-
-    .qty {
-        width: 45px;
-        float: left;
-    }
-}
-
-.order-product {
-    .item {
-        float: left;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        background: #fff;
-        margin: 0 2px 4px 2px;
-
-        img {
-            width: 100px;
-            height: 100px;
-            max-width: 100%;
-        }
-
-        h5 {
-            font-size: 13px;
-            text-align: center;
-        }
-    }
-}
-
-.product-list {
-    .product-img {
-        max-width: 70px;
-        max-height: 70px;
-    }
-}
 /* for fixing select2 input field desgine issue */
  .select2-container--default .select2-selection--single {
      height: calc(1.5em + 0.75rem + 2px) !important;
@@ -199,4 +160,97 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+.user-cart .card {
+    height: 400px;
+}
+
+.user-cart .qty {
+    width: 45px;
+    float: left;
+}
+
+.order-product .item {
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    margin: 0 2px 4px 2px;
+}
+
+.order-product .item img {
+    width: 100px;
+    height: 100px;
+    max-width: 100%;
+}
+
+.order-product .item h5 {
+    font-size: 13px;
+    text-align: center;
+}
+
+.product-list .product-img {
+    max-width: 70px;
+    max-height: 70px;
+}
+.products-card-container {
+    max-height: 400px;
+    /* Set a fixed height for the container */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    overflow-x: hidden;
+    /* Hide horizontal scrolling */
+    border: 1px solid #ddd;
+    /* Optional: add a border for better visibility */
+    padding: 10px;
+    /* Optional: add some padding */
+}
+
+.product-name {
+    margin-bottom: 0;
+    /* Remove default bottom margin */
+    font-weight: bold;
+    /* Make the name bold */
+    overflow: hidden;
+    /* Hide any overflow */
+    white-space: normal;
+    /* Allow wrapping */
+    text-overflow: ellipsis;
+}
+
+.product-details p {
+    margin: 0;
+    max-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.loading-more {
+    text-align: center;
+    /* Center the loading message */
+    padding: 10px;
+    /* Add some padding */
+    font-weight: bold;
+    /* Make the text bold */
+}
+
+.responsive-table {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.qty {
+    /* Hides the default number input spinner */
+    -moz-appearance: textfield;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Chrome/Safari */
+    appearance: none;
+    /* Standard */
+}
+
+.qty::-webkit-inner-spin-button,
+.qty::-webkit-outer-spin-button {
+    display: none;
+    /* Hides the spin buttons */
 }

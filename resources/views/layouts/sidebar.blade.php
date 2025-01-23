@@ -21,7 +21,7 @@
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
-            <li class="sidebar-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
+            <li class="sidebar-item {{ Route::is('admin.cart.index') ? 'active' : '' }}">
                 <a href="{{ route('admin.cart.index') }}" class="sidebar-link">
                     <i class="bi bi-cart"></i>
                     <span>POS</span>

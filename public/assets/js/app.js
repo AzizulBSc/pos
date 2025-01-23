@@ -150,3 +150,46 @@ sidebarToggle();
 // Initialize tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+document.addEventListener("DOMContentLoaded", function () {
+    const calculatorModal = document.getElementById("calculator-modal");
+    const showCalculator = document.getElementById("show-calculator");
+    const closeCalculator = document.getElementById("close-calculator");
+    const display = document.getElementById("calculator-display");
+    const buttons = document.querySelectorAll(".calc-btn");
+
+    let currentInput = "";
+    let lastOperator = "";
+    let result = 0;
+
+    // Show/hide calculator
+    showCalculator.addEventListener("click", (e) => {
+        e.preventDefault();
+        calculatorModal.classList.toggle("hidden");
+    });
+
+    closeCalculator.addEventListener("click", () => {
+        calculatorModal.classList.add("hidden");
+    });
+
+    // Calculator button logic
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const value = button.getAttribute("data-value");
+
+            if (value === "=") {
+                try {
+                    currentInput = eval(currentInput);
+                } catch (error) {
+                    currentInput = "Error";
+                }
+            } else if (value === "C") {
+                currentInput = "";
+            } else {
+                currentInput += value;
+            }
+
+            display.value = currentInput;
+        });
+    });
+});
