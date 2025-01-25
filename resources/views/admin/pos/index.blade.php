@@ -58,6 +58,91 @@
   .hidden {
     display: none;
   }
+
+  .date-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  #date-display {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 1000;
+    background: #007bff;
+    /* Attractive blue background */
+    color: #fff;
+    /* White text for contrast */
+    border: 2px solid #0056b3;
+    /* Slightly darker border */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    /* Softer shadow for depth */
+    padding: 20px;
+    /* Larger padding for a spacious look */
+    font-size: 18px;
+    /* Increased font size for readability */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    visibility: hidden;
+    /* Initially hidden */
+    opacity: 0;
+    /* Fully transparent */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    /* Smooth transition */
+    transform: translateY(-10px);
+    /* Slight upward shift for animation */
+  }
+
+  .date-wrapper:hover #date-display {
+    visibility: visible;
+    /* Show on hover */
+    opacity: 1;
+    /* Fully visible */
+    transform: translateY(0);
+    /* Reset position for animation */
+  }
+
+  #date-display div {
+    margin: 5px 0;
+    /* Add spacing between lines */
+  }
+
+  #date-display div:first-child {
+    font-size: 24px;
+    /* Larger size for the day name */
+    font-weight: bold;
+  }
+
+  #date-display div:last-child {
+    font-size: 20px;
+    /* Slightly larger size for the time */
+    font-weight: 600;
+  }
+
+  #show-date {
+    font-size: 16px;
+    /* Slightly larger button text */
+    padding: 10px 15px;
+    background-color: #dc3545;
+    /* Matching button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  #show-date:hover {
+    background-color: #c82333;
+    /* Darker red on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow on hover */
+  }
 </style>
 @endpush
 @section('content')
@@ -78,18 +163,23 @@
               <line x1="12" y1="16" x2="12" y2="12"></line>
               <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg> Sales</a>
-          <a href="#" class="btn icon icon-left btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
+          <a href="{{route('admin.products.index')}}" class="btn icon icon-left btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
               <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
               <line x1="12" y1="9" x2="12" y2="13"></line>
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
             Products</a>
-          <a href="#" class="btn icon icon-left btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-            Calander</a>
+          <div id="date-wrapper" class="date-wrapper">
+            <a href="#" class="btn icon icon-left btn-danger" id="show-date">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              Date & Time
+            </a>
+            <div id="date-display" class="date-hidden"></div>
+          </div>
           <a href="#" class="btn icon icon-left btn-success" id="show-calculator">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -97,7 +187,6 @@
             </svg>
             Calculator
           </a>
-
           <div id="calculator-modal" class="calculator rounded hidden">
             <div class="calculator-header rounded">
               <h4 class="text-white">Calculator</h4>
@@ -150,6 +239,40 @@
 @endsection
 @push('js')
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateDisplay = document.getElementById('date-display');
+
+    function formatTime(date) {
+      let hours = date.getHours();
+      const minutes = date.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12; // Convert to 12-hour format
+      const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
+      return `${hours}:${minutesStr} ${ampm}`;
+    }
+
+    function updateDateTime() {
+      const now = new Date();
+      const dayName = now.toLocaleDateString('en-US', {
+        weekday: 'long'
+      });
+      const formattedTime = formatTime(now);
+      const formattedDate = now.toLocaleDateString('en-US');
+      dateDisplay.innerHTML = `
+      <div>${dayName}</div>
+      <div>${formattedDate}</div>
+      <div>${formattedTime}</div>
+    `;
+    }
+
+    // Initialize date and time
+    updateDateTime();
+
+    // Optionally, keep updating time every minute
+    setInterval(updateDateTime, 60000);
+  });
+
+
   document.addEventListener('DOMContentLoaded', function() {
     const calculatorModal = document.getElementById('calculator-modal');
     const showCalculator = document.getElementById('show-calculator');
