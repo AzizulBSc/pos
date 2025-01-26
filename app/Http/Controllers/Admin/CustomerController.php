@@ -54,6 +54,7 @@ class CustomerController extends Controller
 
             $customer = Customer::create([
                 'name' => $request->name,
+                'phone' => fake()->numerify('##########')
             ]);
 
             return response()->json($customer);

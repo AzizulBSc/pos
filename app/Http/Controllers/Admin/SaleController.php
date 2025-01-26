@@ -125,9 +125,17 @@ class SaleController extends Controller
                 'paid_by' => 'cash',
             ]);
         }
-
+        $data = [
+            'siteName' => 'MyApp',
+            'siteLogo' => 'https://example.com/logo.png',
+            'currentDate' => now()->toDateString(),
+            'siteDetails' => '123 Example Street, Example City phone 0183223232',
+            'noteToCustomer' => 'Thank you for shopping with us!',
+            'currencySymbol' => '$',
+             'sale' => $sale->load(['customer', 'products.product']),
+        ];
         $carts = Cart::where('user_id', auth()->id())->delete();
-        return response()->json(['message' => 'Sale completed successfully', 'sale' => $sale], 200);
+        return response()->json(['message' => 'Sale completed successfully', 'data' => $data], 200);
     }
 
     /**
