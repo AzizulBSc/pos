@@ -127,7 +127,7 @@ class SaleController extends Controller
         }
         $data = [
             'siteName' => 'MyApp',
-            'siteLogo' => 'https://example.com/logo.png',
+            'siteLogo' => asset('assets/images/no-image.png'),
             'currentDate' => now()->toDateString(),
             'siteDetails' => '123 Example Street, Example City phone 0183223232',
             'noteToCustomer' => 'Thank you for shopping with us!',

@@ -10,11 +10,60 @@ const Invoice = ({ invoiceData }) => {
         sale,
         currencySymbol,
     } = invoiceData;
-    console.log("dataInvoice:", invoiceData);
+
+    const handlePrint = () => {
+        const printContent = document.getElementById("invoice-content");
+        const iframe = document.createElement("iframe");
+        document.body.appendChild(iframe);
+
+        const iframeDoc =
+            iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.body.innerHTML = `
+            <html>
+                <head>
+                    <title>Invoice</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                        }
+                        .card {
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            padding: 20px;
+                        }
+                        .table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+                        .table th, .table td {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                        }
+                        .table th {
+                            background-color: #f4f4f4;
+                        }
+                        .text-right {
+                            text-align: right;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${printContent.innerHTML}
+                </body>
+            </html>
+        `;
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+
+        setTimeout(() => document.body.removeChild(iframe), 1000);
+    };
+
     return (
         <div className="card">
             <div className="card-body">
-                <section className="invoice">
+                <section className="invoice" id="invoice-content">
                     {/* Title row */}
                     <div className="row mb-4">
                         <div className="col-4">
@@ -161,20 +210,20 @@ const Invoice = ({ invoiceData }) => {
                             </table>
                         </div>
                     </div>
-
-                    {/* Print Button */}
-                    <div className="row no-print">
-                        <div className="col-12">
-                            <button
-                                type="button"
-                                onClick={() => window.print()}
-                                className="btn btn-success float-right"
-                            >
-                                <i className="fas fa-print"></i> Print
-                            </button>
-                        </div>
-                    </div>
                 </section>
+
+                {/* Print Button */}
+                <div className="row no-print">
+                    <div className="col-12">
+                        <button
+                            type="button"
+                            onClick={handlePrint}
+                            className="btn btn-success float-right"
+                        >
+                            <i className="fas fa-print"></i> Print
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

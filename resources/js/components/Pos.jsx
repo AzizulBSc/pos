@@ -13,9 +13,9 @@ import POSInvoice from "./POSInvoice";
 export default function Pos() {
     const [products, setProducts] = useState([]);
     const [carts, setCarts] = useState([]);
-  const [invoiceData, setInvoiceData] = useState(null);
-  
-  const [showInvoice, setShowInvoice] = useState(false);
+    const [invoiceData, setInvoiceData] = useState(null);
+
+    const [showInvoice, setShowInvoice] = useState(false);
     const [orderDiscount, setOrderDiscount] = useState(0);
     const [paid, setPaid] = useState(0);
     const [due, setDue] = useState(0);
@@ -215,8 +215,8 @@ export default function Pos() {
                         setCartUpdated(!cartUpdated);
                         setProductUpdated(!productUpdated);
                         toast.success(res?.data?.message);
-                         setInvoiceData(res?.data?.data);
-                         setShowInvoice(true); 
+                        setInvoiceData(res?.data?.data);
+                        setShowInvoice(true);
                         console.log("data:", res?.data?.data);
                         // window.location.href = `orders/invoice/${res?.data?.order?.id}`;
                     })
