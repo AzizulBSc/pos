@@ -123,8 +123,6 @@
 
   #show-date {
     font-size: 16px;
-    /* Slightly larger button text */
-    padding: 10px 15px;
     background-color: #dc3545;
     /* Matching button color */
     color: white;
@@ -154,38 +152,32 @@
       </div>
       <div class="col-12 col-md-6 order-md-2 order-first">
         <div class="buttons breadcrumb-header float-start float-lg-end">
-          <a href="{{route('admin.dashboard')}}" class="btn icon icon-left btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-            </svg> Dashboard</a>
-          <a href="#" class="btn icon icon-left btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg> Sales</a>
-          <a href="{{route('admin.products.index')}}" class="btn icon icon-left btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          <a href="{{route('admin.dashboard')}}" class="btn icon icon-left btn-primary">
+            <i class="fas fa-tachometer-alt"></i>
+          </a>
+          <a href="#" class="btn icon icon-left btn-info">
+            <svg fill="#0d0c0c" height="256px" width="256px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-92.48 -92.48 483.29 483.29" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 298.333 298.333" stroke="#0d0c0c" stroke-width="0.00298333" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path d="m248.833,66.166h-248.833v166h248.833l49.5-83-49.5-83zm-176.928,107.198c-3.766,2.73-8.756,4.098-14.978,4.098-6.245,0-11.648-1.57-16.207-4.703-4.558-3.135-6.774-7.561-6.648-13.453l.075-.139h12.43c0,3 0.855,5.35 2.566,6.711 1.715,1.361 4.308,1.996 7.784,1.996 2.645,0 4.615-0.552 5.912-1.608 1.296-1.059 1.946-2.456 1.946-4.169 0-1.938-0.644-3.441-1.927-4.498-1.285-1.059-3.59-2.183-6.914-3.366-6.95-2.191-12.101-4.54-15.451-7.048-3.35-2.506-5.023-6.126-5.023-10.86 0-4.609 1.995-8.339 5.988-11.185 3.99-2.846 9.059-4.268 15.205-4.268 6.094,0 11.086,1.568 14.979,4.703 3.891,3.135 5.772,7.3 5.648,12.237l-.077,.355h-12.391c0-2-0.742-4.101-2.229-5.474-1.485-1.371-3.538-2.124-6.156-2.124-2.57,0-4.587,0.532-6.045,1.669-1.46,1.131-2.191,2.514-2.191,4.176 0,1.615 0.737,2.893 2.208,3.864 1.474,0.971 4.237,2.182 8.293,3.643 6.245,1.863 10.949,4.152 14.111,6.873 3.158,2.719 4.738,6.458 4.738,11.216 0.002,4.837-1.877,8.619-5.646,11.354zm44.901,3.803l-3.137-11h-17.339l-3.1,11h-12.843l17.756-56h13.713l17.793,56h-12.843zm53.194,0h-37v-56h13v46h24v10zm45-46h-25v12h21v10h-21v14h25v10h-38v-56h38v10zm41.583,26.25c-4.557,0-8.25-3.693-8.25-8.25 0-4.557 3.693-8.25 8.25-8.25 4.557,0 8.25,3.693 8.25,8.25 0,4.556-3.693,8.25-8.25,8.25z"></path>
+                  <polygon points="104.867,136.167 99.162,156.167 110.836,156.167 105.093,136.167 "></polygon>
+                </g>
+              </g>
             </svg>
-            Products</a>
+          </a>
           <div id="date-wrapper" class="date-wrapper">
             <a href="#" class="btn icon icon-left btn-danger" id="show-date">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-              Date & Time
+              <i class="fas fa-clock"></i>
             </a>
             <div id="date-display" class="date-hidden"></div>
           </div>
+          <a href="{{route('admin.products.index')}}" class="btn icon icon-left btn-warning">
+            <i class="fab fa-product-hunt"></i>
+          </a>
           <a href="#" class="btn icon icon-left btn-success" id="show-calculator">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Calculator
+            <i class="fas fa-calculator"></i>
           </a>
           <div id="calculator-modal" class="calculator rounded hidden">
             <div class="calculator-header rounded">
