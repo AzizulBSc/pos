@@ -1,6 +1,6 @@
 import React from "react";
 
-const Invoice = ({ invoiceData }) => {
+const Invoice = ({ invoiceData, handleCloseInvoice }) => {
     const {
         siteLogo,
         siteName,
@@ -218,9 +218,16 @@ const Invoice = ({ invoiceData }) => {
                         <button
                             type="button"
                             onClick={handlePrint}
-                            className="btn btn-success float-right"
+                            className="btn btn-success float-right me-2"
                         >
                             <i className="fas fa-print"></i> Print
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleCloseInvoice}
+                            className="btn btn-danger float-right"
+                        >
+                            <i className="fas fa-print"></i> Close
                         </button>
                     </div>
                 </div>

@@ -14,7 +14,6 @@ export default function Pos() {
     const [products, setProducts] = useState([]);
     const [carts, setCarts] = useState([]);
     const [invoiceData, setInvoiceData] = useState(null);
-
     const [showInvoice, setShowInvoice] = useState(false);
     const [orderDiscount, setOrderDiscount] = useState(0);
     const [paid, setPaid] = useState(0);
@@ -139,6 +138,7 @@ export default function Pos() {
     }, [currentPage, totalPages]);
 
     function addProductToCart(id) {
+        // setShowInvoice(false)
         axios
             .post("/admin/cart", { id })
             .then((res) => {
@@ -227,6 +227,9 @@ export default function Pos() {
                 return;
             }
         });
+    }
+    function handleCloseInvoice() {
+        setShowInvoice(false);
     }
     return (
         <>
@@ -477,7 +480,7 @@ export default function Pos() {
                 </div>
             </div>
             {showInvoice && invoiceData && (
-                <POSInvoice invoiceData={invoiceData} />
+                <POSInvoice invoiceData={invoiceData} handleCloseInvoice={handleCloseInvoice} />
             )}
             <Toaster position="top-right" reverseOrder={false} />
         </>
