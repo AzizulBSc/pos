@@ -215,6 +215,9 @@
               </div>
             </div>
           </div>
+          <button id="fullscreen-btn" class="btn btn-primary">
+            <i class="fas fa-expand"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -330,6 +333,18 @@
 
     // Initialize the display
     updateDisplay();
+  });
+
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+  fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      // fullscreenBtn.textContent = 'Exit Full Screen';
+    } else {
+      document.exitFullscreen();
+      // fullscreenBtn.textContent = 'Go Full Screen';
+    }
   });
 </script>
 @endpush

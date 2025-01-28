@@ -118,11 +118,12 @@ class SaleController extends Controller
         $sale->save();
         //create sale transaction
         if ($request->paid > 0) {
-            $orderTransaction = $sale->transactions()->create([
+            $orderTransaction = $sale->payments()->create([
                 'amount' => $request->paid,
-                'customer_id' => $sale->customer_id,
                 'user_id' => auth()->id(),
-                'paid_by' => 'cash',
+                'payment_type' => 'cash',
+                'transaction_type' => 'credit',
+                'note' => 'Payment for sale',
             ]);
         }
         $data = [
@@ -193,11 +194,12 @@ class SaleController extends Controller
             $collection_amount = $data['amount'];
             //create sale transaction
 
-            $orderTransaction = $sale->transactions()->create([
+            $orderTransaction = $sale->payments()->create([
                 'amount' => $data['amount'],
-                'customer_id' => $sale->customer_id,
                 'user_id' => auth()->id(),
-                'paid_by' => 'cash',
+                'payment_type' => 'cash',
+                'transaction_type' => 'credit',
+                'note' => 'Payment for sale',
             ]);
             return to_route('backend.admin.collectionInvoice', $orderTransaction->id);
         }
