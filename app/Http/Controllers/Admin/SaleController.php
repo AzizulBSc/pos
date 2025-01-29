@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sale;
 // use App\Models\SaleTransaction;
 use App\Models\Cart;
+use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -19,8 +20,8 @@ class SaleController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $orders = Sale::with('customer')->get();
-            return DataTables::of($orders)
+            $sales = Sale::with('customer')->latest();
+            return DataTables::of($sales)
                 ->addIndexColumn()
                 ->addColumn('saleId', fn($data) => "#" . $data->id)
                 ->addColumn('customer', fn($data) => $data->customer->name ?? '-')
@@ -30,23 +31,17 @@ class SaleController extends Controller
                 ->addColumn('total', fn($data) => number_format($data->total, 2, '.', ','))
                 ->addColumn('paid', fn($data) => number_format($data->paid, 2, '.', ','))
                 ->addColumn('due', fn($data) => number_format($data->due, 2, '.', ','))
+                ->editColumn('created_at', fn($data) => $data->created_at->format('g:ia, d M, Y'))
                 ->addColumn('status', fn($data) => $data->status
                     ? '<span class="badge bg-primary">Paid</span>'
                     : '<span class="badge bg-danger">Due</span>')
-                ->addColumn('action', function ($data) {
-                    $buttons = '';
-
-                    $buttons .= '<a class="btn btn-success btn-sm" href="' . route('backend.admin.orders.invoice', $data->id) . '"><i class="fas fa-file-invoice"></i> Invoice</a>';
-                    if (!$data->status) {
-                        $buttons .= '<a class="btn btn-warning btn-sm" href="' . route('backend.admin.due.collection', $data->id) . '"><i class="fas fa-receipt"></i> Due Collection</a>';
-                    }
-                    $buttons .= '<a class="btn btn-primary btn-sm" href="' . route('backend.admin.orders.transactions', $data->id) . '"><i class="fas fa-exchange-alt"></i> Transactions</a>';
-                    return $buttons;
+                ->addColumn('action', function ($row) {
+                    return view('admin.sales.action', compact('row'));
                 })
-                ->rawColumns(['saleId', 'customer', 'item', 'sub_total', 'discount', 'total', 'paid', 'due', 'status', 'action'])
+                ->rawColumns(['saleId', 'customer', 'created_at', 'item', 'sub_total', 'discount', 'total', 'paid', 'due', 'status', 'action'])
                 ->toJson();
         }
-        return view('admin.orders.index');
+        return view('admin.sales.index');
     }
 
     /**
@@ -133,7 +128,7 @@ class SaleController extends Controller
             'siteDetails' => '123 Example Street, Example City phone 0183223232',
             'noteToCustomer' => 'Thank you for shopping with us!',
             'currencySymbol' => '$',
-             'sale' => $sale->load(['customer', 'products.product']),
+            'sale' => $sale->load(['customer', 'products.product']),
         ];
         $carts = Cart::where('user_id', auth()->id())->delete();
         return response()->json(['message' => 'Sale completed successfully', 'data' => $data], 200);
@@ -172,10 +167,10 @@ class SaleController extends Controller
     }
     public function invoice($id)
     {
-        // $sale = Sale::with(['customer', 'products.product'])->findOrFail($id);
-        // return view('backend.orders.print-invoice', compact('sale'));
+        $sale = Sale::with(['customer', 'products.product'])->findOrFail($id);
+        return view('admin.sales.invoice', compact('sale'));
     }
-    public function collection(Request $request, $id)
+    public function paymentCollection(Request $request, $id)
     {
 
         $sale = Sale::findOrFail($id);
@@ -203,21 +198,21 @@ class SaleController extends Controller
             ]);
             return to_route('backend.admin.collectionInvoice', $orderTransaction->id);
         }
-        // return view('backend.orders.collection.create', compact('sale'));
+        return view('admin.sales.collection.create', compact('sale'));
     }
 
     //collection invoice by order_transaction id
     public function collectionInvoice($id)
     {
-        // $transaction = Transaction::findOrFail($id);
-        // $collection_amount = $transaction->amount;
-        // $sale = $transaction->sale;
-        // return view('backend.orders.collection.invoice', compact('sale', 'collection_amount', 'transaction'));
+        $transaction = Payment::findOrFail($id);
+        $collection_amount = $transaction->amount;
+        $sale = $transaction->sale;
+        return view('admin.sales.collection.invoice', compact('sale', 'collection_amount', 'transaction'));
     }
     //transactions by sale id
-    public function transactions($id)
+    public function payments($id)
     {
-        $sale = Sale::with('transactions')->findOrFail($id);
-        // return view('backend.orders.collection.index', compact('sale',));
+        $sale = Sale::with('payments')->findOrFail($id);
+        return view('admin.sales.payments.index', compact('sale',));
     }
 }

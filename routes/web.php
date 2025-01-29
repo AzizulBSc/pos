@@ -62,6 +62,10 @@ Route::prefix('admin')->as('admin.')->middleware('auth')->group(function () {
     Route::resource('purchases', PurchaseController::class);
     Route::get('purchase/products/{id}', [PurchaseController::class, 'purchaseProducts'])->name('purchase.products');
     Route::resource('sales', SaleController::class);
+    Route::get('/sales/invoice/{id}', [SaleController::class, 'invoice'])->name('sales.invoice');
+    Route::get('/sales/invoice/{id}', [SaleController::class, 'invoice'])->name('sales.invoice');
+    Route::get('/sales/payments/{id}', [SaleController::class, 'payments'])->name('sales.payments');
+    Route::get('/sales/payments/collection/{id}', [SaleController::class, 'paymentCollection'])->name('sales.payments.collection');
 
     // start pos
     Route::get('/get/products', [CartController::class, 'getProducts'])->name('getProducts');

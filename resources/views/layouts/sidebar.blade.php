@@ -200,6 +200,26 @@
                 </ul>
             </li>
             @endcan
+            @can('view_sales')
+            <li class="sidebar-item has-sub {{ Route::is('admin.sales.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Sale</span>
+                </a>
+                <ul class="submenu {{ Route::is('admin.sales.*') ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_sales')
+                    <li class="submenu-item {{ Route::is('admin.sales.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.sales.index') }}">Sale List</a>
+                    </li>
+                    @endcan
+                    @can('create_sale')
+                    <li class="submenu-item {{ Route::is('admin.sales.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin.cart.index') }}">Add Sale</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
             @can('view_settings')
             <li class="sidebar-item has-sub {{ Route::is('admin.settings.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="sidebar-link toggle-submenu">

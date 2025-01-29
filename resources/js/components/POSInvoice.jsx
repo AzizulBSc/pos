@@ -139,12 +139,12 @@ const Invoice = ({ invoiceData, handleCloseInvoice }) => {
                                                 {item.product.unit}
                                             </td>
                                             <td>
-                                                {item.discounted_price}
-                                                {item.price >
-                                                    item.discounted_price && (
+                                                {item.product.discounted_price}
+                                                {item.product.price >
+                                                    item.product.discounted_price && (
                                                     <>
                                                         <br />
-                                                        <del>{item.price}</del>
+                                                        <del>{item.product.price}</del>
                                                     </>
                                                 )}
                                             </td>

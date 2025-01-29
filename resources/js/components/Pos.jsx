@@ -143,11 +143,11 @@ export default function Pos() {
             .post("/admin/cart", { id })
             .then((res) => {
                 setCartUpdated(!cartUpdated);
-                playSound(SuccessSound);
+                // playSound(SuccessSound);
                 toast.success(res?.data?.message);
             })
             .catch((err) => {
-                playSound(WarningSound);
+                // playSound(WarningSound);
                 toast.error(err.response.data.message);
             });
     }
@@ -172,11 +172,11 @@ export default function Pos() {
                     .put("/admin/cart/empty")
                     .then((res) => {
                         setCartUpdated(!cartUpdated);
-                        playSound(SuccessSound);
+                        // playSound(SuccessSound);
                         toast.success(res?.data?.message);
                     })
                     .catch((err) => {
-                        playSound(WarningSound);
+                        // playSound(WarningSound);
                         toast.error(err.response.data.message);
                     });
             } else if (result.isDenied) {

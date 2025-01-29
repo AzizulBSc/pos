@@ -31,8 +31,7 @@ class Product extends Model
         'status',
         'rating',
     ];
-
-
+    protected $appends = ['discounted_price'];
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -65,7 +64,6 @@ class Product extends Model
         }
         return round($discountedPrice, 2);
     }
-    protected $appends = ['discounted_price'];
 
     public function setNameAttribute($value)
     {
