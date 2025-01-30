@@ -63,9 +63,9 @@ Route::prefix('admin')->as('admin.')->middleware('auth')->group(function () {
     Route::get('purchase/products/{id}', [PurchaseController::class, 'purchaseProducts'])->name('purchase.products');
     Route::resource('sales', SaleController::class);
     Route::get('/sales/invoice/{id}', [SaleController::class, 'invoice'])->name('sales.invoice');
-    Route::get('/sales/invoice/{id}', [SaleController::class, 'invoice'])->name('sales.invoice');
+    Route::get('/sales/payments/invoice/{id}', [SaleController::class, 'collectionInvoice'])->name('sales.payments.invoice');
     Route::get('/sales/payments/{id}', [SaleController::class, 'payments'])->name('sales.payments');
-    Route::get('/sales/payments/collection/{id}', [SaleController::class, 'paymentCollection'])->name('sales.payments.collection');
+    Route::any('/sales/payments/create/{id}', [SaleController::class, 'paymentCollection'])->name('sales.payments.create');
 
     // start pos
     Route::get('/get/products', [CartController::class, 'getProducts'])->name('getProducts');

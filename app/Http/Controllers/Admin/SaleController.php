@@ -177,6 +177,7 @@ class SaleController extends Controller
         if ($request->isMethod('post')) {
             $data = $request->validate([
                 'amount' => 'required|numeric|min:1',
+                'note' => 'nullable|string',
             ]);
 
 
@@ -194,11 +195,11 @@ class SaleController extends Controller
                 'user_id' => auth()->id(),
                 'payment_type' => 'cash',
                 'transaction_type' => 'credit',
-                'note' => 'Payment for sale',
+                'note' => $data['note'],
             ]);
-            return to_route('backend.admin.collectionInvoice', $orderTransaction->id);
+            return to_route('admin.sales.payments.invoice', $orderTransaction->id);
         }
-        return view('admin.sales.collection.create', compact('sale'));
+        return view('admin.sales.payments.create', compact('sale'));
     }
 
     //collection invoice by order_transaction id
@@ -207,7 +208,7 @@ class SaleController extends Controller
         $transaction = Payment::findOrFail($id);
         $collection_amount = $transaction->amount;
         $sale = $transaction->sale;
-        return view('admin.sales.collection.invoice', compact('sale', 'collection_amount', 'transaction'));
+        return view('admin.sales.payments.invoice', compact('sale', 'collection_amount', 'transaction'));
     }
     //transactions by sale id
     public function payments($id)

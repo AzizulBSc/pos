@@ -5,7 +5,7 @@
     </a>
     @endcan
     @can('update_sale')
-    <a href="{{ route('admin.sales.payments.collection', $row->id) }}" class="btn btn-sm btn-success">
+    <a href="{{ route('admin.sales.payments.create', $row->id) }}" class="btn btn-sm btn-success">
         <i class="fas fa-receipt"></i>
     </a>
     @endcan
