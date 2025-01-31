@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Sale_Invoice_'.$sale->id)
+@section('title', 'Sale_Invoice_'.$payment->id)
 @section('content')
 <div class="card">
   <div class="card-body">
@@ -45,6 +45,7 @@
           Info <br>
           Sale ID #{{$sale->id}}<br>
           Sale Date: {{date('d/m/Y', strtotime($sale->created_at))}}<br>
+          Payment Date: {{date('d/m/Y', strtotime($payment->created_at))}}<br>
           <!-- <br>
           <b>Payment Due:</b> 2/22/2014<br>
           <b>Account:</b> 968-34567 -->
@@ -116,8 +117,12 @@
                 <td class="text-right">{{currency()->symbol.' '.number_format($sale->total,2,'.',',')}}</td>
               </tr>
               <tr>
-                <td>Paid:</td>
-                <td class="text-right">{{currency()->symbol.' '.number_format($sale->paid,2,'.',',')}}</td>
+                <td>Previously Paid:</th>
+                <td class="text-right">{{currency()->symbol.' '.number_format($sale->paid - $collection_amount,2,'.',',')}}</td>
+              </tr>
+              <tr>
+                <td>Collection Amount: <sup>{{date('d/m/Y', strtotime($payment->created_at))}}</sup></th>
+                <td class="text-right">{{currency()->symbol.' '.number_format($collection_amount,2,'.',',')}}</td>
               </tr>
               <tr>
                 <td>Due:</td>
@@ -145,7 +150,7 @@
 @push('css')
 <style>
   .invoice {
-    border: none !important;
+    bsale: none !important;
   }
 
   thead {

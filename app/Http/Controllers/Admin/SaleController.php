@@ -174,6 +174,9 @@ class SaleController extends Controller
     {
 
         $sale = Sale::findOrFail($id);
+        if($sale->due <= 0){
+            return back()->with('error', 'This sale is already paid');
+        }
         if ($request->isMethod('post')) {
             $data = $request->validate([
                 'amount' => 'required|numeric|min:1',
@@ -205,15 +208,31 @@ class SaleController extends Controller
     //collection invoice by order_transaction id
     public function collectionInvoice($id)
     {
-        $transaction = Payment::findOrFail($id);
-        $collection_amount = $transaction->amount;
-        $sale = $transaction->sale;
-        return view('admin.sales.payments.invoice', compact('sale', 'collection_amount', 'transaction'));
+        $payment = Payment::findOrFail($id);
+        $collection_amount = $payment->amount;
+        $sale = $payment->payable;
+        return view('admin.sales.payments.invoice', compact('sale', 'collection_amount', 'payment'));
     }
     //transactions by sale id
-    public function payments($id)
+    public function payments(Request $request,$id)
     {
-        $sale = Sale::with('payments')->findOrFail($id);
-        return view('admin.sales.payments.index', compact('sale',));
+        if ($request->ajax()) {
+            $sale = Sale::with(['payments', 'customer'])->findOrFail($id);
+            return DataTables::of($sale->payments)
+                ->addIndexColumn()
+                ->addColumn('saleId', fn($data) => "#" . $id)
+                ->addColumn('id', fn($data) => "#" . $data->id)
+                ->addColumn('customer', fn($data) => $sale->customer->name ?? '-')
+                ->addColumn('amount', fn($data) => number_format($data->amount, 2, '.', ','))
+                ->editColumn('created_at', fn($data) => $data->created_at->format('g:ia, d M, Y'))
+                ->addColumn('action', function ($row) {
+                    return '<a href="' . route('admin.sales.payments.invoice', $row->id) . '" class="btn btn-sm btn-primary" title="Sale Payment Invoice">
+                <i class="fas fa-file-invoice"></i>
+            </a>';
+                })
+                ->rawColumns(['saleId', 'customer', 'created_at', 'id', 'amount','action'])
+                ->toJson();
+        }
+        return view('admin.sales.payments.index', compact('id'));
     }
 }
