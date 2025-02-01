@@ -225,6 +225,31 @@
                 </ul>
             </li>
             @endcan
+            @can('view_sales')
+            <li class="sidebar-item has-sub {{ Route::is(['admin.sale.summery','admin.sale.report','admin.inventory.report']) ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="sidebar-link toggle-submenu">
+                    <i class="bi bi-people"></i>
+                    <span>Reports</span>
+                </a>
+                <ul class="submenu {{ Route::is(['admin.sale.summery','admin.sale.report','admin.inventory.report']) ? 'submenu-open' : 'submenu-close' }}">
+                    @can('view_sales')
+                    <li class="submenu-item {{ Route::is('admin.sale.summery') ? 'active' : '' }}">
+                        <a href="{{ route('admin.sale.summery') }}">Summery</a>
+                    </li>
+                    @endcan
+                    @can('view_sales')
+                    <li class="submenu-item {{ Route::is('admin.sale.report') ? 'active' : '' }}">
+                        <a href="{{ route('admin.sale.report') }}">Sales</a>
+                    </li>
+                    @endcan
+                    @can('view_sales')
+                    <li class="submenu-item {{ Route::is('admin.inventory.report') ? 'active' : '' }}">
+                        <a href="{{ route('admin.inventory.report') }}">Inventory</a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcan
             @can('view_settings')
             <li class="sidebar-item has-sub {{ Route::is('admin.settings.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="sidebar-link toggle-submenu">

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\Pos\CartController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\Report\ReportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\SettingController;
@@ -79,7 +80,12 @@ Route::prefix('admin')->as('admin.')->middleware('auth')->group(function () {
     Route::get('/get/customers', [CustomerController::class, 'getCustomers']);
     Route::post('/create/customers', [CustomerController::class, 'store']);
     //end pos
+ //start report
 
+    Route::get('/sale/summery', [ReportController::class, 'saleSummery'])->name('sale.summery');
+    Route::get('/sale/report', [ReportController::class, 'saleReport'])->name('sale.report');
+    Route::get('/inventory/report', [ReportController::class, 'inventoryReport'])->name('inventory.report');
+    //end report
 
     // setting routes
     Route::prefix('/settings')->as('settings.')->controller(SettingController::class)->group(function () {

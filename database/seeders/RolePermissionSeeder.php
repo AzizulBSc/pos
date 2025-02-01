@@ -89,6 +89,8 @@ class RolePermissionSeeder extends Seeder
             'create_customer',
             'update_customer',
             'delete_customer',
+            // Products
+            'view_reports',
         ];
 
         // Create permissions

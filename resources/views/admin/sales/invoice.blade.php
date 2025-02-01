@@ -142,7 +142,6 @@
 @endsection
 
 @push('css')
-@push('css')
 <style>
   .invoice {
     border: none !important;
@@ -180,7 +179,7 @@
 @endpush
 
 @endpush
-@push('script')
+@push('js')
 <script>
   window.addEventListener("load", window.print());
 </script>

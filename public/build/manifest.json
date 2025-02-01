@@ -19,7 +19,7 @@
     "src": "public/assets/scss/app.scss"
   },
   "public/assets/scss/pages/auth.scss": {
-    "file": "assets/auth-7c5c8f11.css",
+    "file": "assets/auth-75853ca8.css",
     "isEntry": true,
     "src": "public/assets/scss/pages/auth.scss"
   },
@@ -74,7 +74,7 @@
     "src": "public/assets/static/fonts/nunito-latin-800-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-60845118.css",
+    "file": "assets/app-6337c321.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -83,7 +83,7 @@
       "assets/beep-07a-24004a82.mp3",
       "assets/beep-02-4c77c523.mp3"
     ],
-    "file": "assets/app-5eb93737.js",
+    "file": "assets/app-17392a35.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   },
