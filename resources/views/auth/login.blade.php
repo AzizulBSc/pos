@@ -20,8 +20,8 @@
                 @endphp
                 <a href="index.html"><img src="{{ $logo }}" alt="Logo"></a>
             </div>
-            <h1 class="auth-title">Log in.</h1>
-            <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+            <h3 class="auth-title">Welcome Back!</h3>
+            <p class="auth-subtitle">Log in to your account to continue.</p>
 
             @foreach ($errors->all() as $error)
             <div class="alert alert-danger mb-2">{{ $error }}</div>
