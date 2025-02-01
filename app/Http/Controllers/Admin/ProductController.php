@@ -27,7 +27,11 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $products = Product::latest()->get();
+            $products = Product::query();
+            $products = $products->when(
+                $request->q == 'low_stocked',
+                fn($query) => $query->where('quantity', '<=', 5)
+            );
             return DataTables::of($products)
                 ->addIndexColumn()
                 ->addColumn('image', fn($data) => '<img src="' . absolutePath($data->image) . '" loading="lazy" alt="' . $data->name . '" class="img-thumb img-fluid" onerror="this.onerror=null; this.src=\'' . asset('assets/images/no-image.png') . '\';" height="80" width="60" />')

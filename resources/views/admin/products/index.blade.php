@@ -43,7 +43,12 @@
     responsive: true,
     serverSide: true,
     processing: true,
-    ajax: "{{ route('admin.products.index') }}",
+    ajax: {
+      url: "{{ route('admin.products.index') }}",
+      data: function(d) {
+        d.q = new URLSearchParams(window.location.search).get("q"); // Get 'q' query parameter from URL
+      }
+    },
     columns: [{
         data: 'DT_RowIndex',
         name: 'DT_RowIndex',

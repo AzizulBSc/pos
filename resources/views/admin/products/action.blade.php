@@ -4,9 +4,9 @@
         <i class="bi bi-pencil"></i>
     </a>
     @endcan
-    @can('update_product')
-    <a href="{{ route('admin.products.edit', $row->id) }}" class="btn btn-sm btn-primary">
-        <i class="bi bi-cart"></i>
+    @can('create_purchase')
+    <a class="btn btn-sm btn-success" href="{{route('admin.purchases.create', ['barcode' => $row->sku])}}" title="Purchase">
+        <i class="fas fa-cart-plus"></i>
     </a>
     @endcan
     @can('delete_product')

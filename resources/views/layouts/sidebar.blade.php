@@ -137,6 +137,11 @@
                         <a href="{{ route('admin.products.create') }}">Add Product</a>
                     </li>
                     @endcan
+                    @can('view_products')
+                    <li class="submenu-item {{ Route::is('admin.products.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.products.index', ['q' => 'low_stocked']) }}">Low Stocked</a>
+                    </li>
+                    @endcan
                 </ul>
             </li>
             @endcan
